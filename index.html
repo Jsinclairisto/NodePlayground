@@ -58,11 +58,9 @@
                 return
                 {
                     editID : "edit_" + todo._id;
-                    deleteID : "delete_" + todo._id,
-                    lsitItemID : "listItem_" + todo_id,
-                    todoID : "todo_" + todo_id,
-
-
+                    deleteID : "delete_" + todo._id;
+                    lsitItemID : "listItem_" + todo_id;
+                    todoID : "todo_" + todo_id;
                 }
             }
             const buildTemplate = (todo,ids) =>
@@ -75,6 +73,16 @@
                                 <button type="button" class"btn btn-secondary" id="${ids}">    
                             </div>
                     </li>`;
+            }
+
+            const displayTodos = (data)=>
+            {
+                data.forEach((todo)=>{
+                    let ids = buildIDS(todo);
+                    display.append(buildTemplate(todo,ids));
+                    editTodo(todo,ids,todoID,ids,editID);
+                    deleteTodo(todo,ids.listItemID,ids.deleteID);
+                });
             }
 
         });
